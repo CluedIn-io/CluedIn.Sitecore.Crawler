@@ -1,0 +1,56 @@
+version: '2.2'
+
+services:
+ mssql:  
+  image: sitecore-docker_mssql:xgenerator
+  environment:
+    ACCEPT_EULA: "Y"
+    sa_password: ${SQL_SA_PASSWORD}
+  mem_limit: 2048m
+  cpu_count: 4
+  networks:
+    app_net:
+      ipv4_address: 172.16.1.2
+
+ sitecore:
+  image: sitecore-docker_sitecore:xgenerator  
+  volumes:
+    - .\logs\sitecore:c:\inetpub\wwwroot\${SITECORE_SITE_NAME}\App_Data\logs
+    - .\wwwroot\sitecore:C:\Workspace
+  depends_on:
+    - xconnect
+    - mssql
+    - solr
+  cpu_count: 6
+  networks:
+    app_net:
+      ipv4_address: 172.16.1.3    
+
+ solr:
+  image: sitecore-docker_solr:xgenerator
+  ports:
+    - ${SOLR_PORT}
+  mem_limit: 4096m
+  networks:
+    app_net:
+      ipv4_address: 172.16.1.4
+
+ xconnect:
+  image: sitecore-docker_xconnect:latest
+  volumes:
+    - .\logs\xconnect:C:\inetpub\wwwroot\xconnect\App_data\Logs
+  networks:
+    app_net:
+      ipv4_address: 172.16.1.5    
+  depends_on:
+    - mssql
+    - solr
+
+networks:
+  app_net:
+    ipam:
+      driver: default
+      config:
+        -
+          subnet: 172.16.1.0/24
+          gateway: 172.16.1.1

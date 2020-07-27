@@ -1,0 +1,62 @@
+using CluedIn.Core;
+using CluedIn.Core.Messages.Processing;
+using System;
+using System.Collections.Generic;
+using CluedIn.Core.Data;
+using CluedIn.Core.Mesh;
+using CluedIn.Core.Messages.WebApp;
+using CluedIn.Crawling.Sitecore.Core;
+
+namespace CluedIn.Providers.Mesh
+{
+  public class Sitecore_Command_MeshProcessor : BaseMeshProcessor
+  {
+    public Sitecore_Command_MeshProcessor(ApplicationContext appContext)
+        : base(appContext)
+    {
+    }
+
+    public override Guid GetProviderId() =>
+      SitecoreConstants.ProviderId;
+
+    /* TODO uncomment and implement the override if requiring a different behaviour than base class implementation
+    public override bool Accept(MeshDataCommand command, MeshQuery query, IEntity entity)
+    {
+      // TODO filter on action 
+      // e.g. query.Action == ActionType.*;
+      return base.Accept(command, query, entity);
+    }
+    */
+
+    public override void DoProcess(ExecutionContext context, MeshDataCommand command, IDictionary<string, object> jobData, MeshQuery query)
+    {
+      throw new NotImplementedException();
+    }
+
+    public override string GetLookupId(IEntity entity)
+    {
+      throw new NotImplementedException();
+    }
+
+    public override List<RawQuery> GetRawQueries(IDictionary<string, object> config, IEntity entity, Core.Mesh.Properties properties)
+    {
+      throw new NotImplementedException();
+    }
+
+    public override string GetVocabularyProviderKey()
+    {
+      throw new NotImplementedException();
+    }
+
+    public override List<QueryReponse> RunQueries(IDictionary<string, object> config, string id, Core.Mesh.Properties properties)
+    {
+      throw new NotImplementedException();
+    }
+
+    public override List<QueryReponse> Validate(ExecutionContext context, MeshDataCommand command, IDictionary<string, object> config, string id, MeshQuery query)
+    {
+      throw new NotImplementedException();
+    }
+  }
+
+}
