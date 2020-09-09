@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Sitecore.Provider\Provider.Sitecore.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Sitecore.Core\Crawling.Sitecore.Core.csproj" />
+    <ProjectReference Include="..\..\..\src\Sitecore.Crawling\Crawling.Sitecore.csproj" />
+    <ProjectReference Include="..\..\..\src\Sitecore.Infrastructure\Crawling.Sitecore.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

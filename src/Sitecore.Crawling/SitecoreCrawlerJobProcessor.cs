@@ -1,6 +1,3 @@
-using Castle.MicroKernel.Registration;
-using Castle.Windsor;
-using CluedIn.Core.Agent.Jobs;
 using CluedIn.Crawling.Sitecore.Core;
 
 namespace CluedIn.Crawling.Sitecore

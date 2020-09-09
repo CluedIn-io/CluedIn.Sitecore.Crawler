@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using System;
 using CluedIn.Core.Logging;
 using CluedIn.Core.Providers;
@@ -18,11 +19,11 @@ namespace CluedIn.Crawling.Sitecore.Infrastructure
 {
     public class SitecoreClient
     {
-        private readonly ILogger _log;
+        private readonly ILogger<SitecoreClient> _log;
         private readonly IMapper _mapper;
         private readonly SitecoreCrawlJobData _jobData;
 
-        public SitecoreClient(ILogger log, SitecoreCrawlJobData sitecoreCrawlJobData, IMapper mapper)
+        public SitecoreClient(ILogger<SitecoreClient> log, SitecoreCrawlJobData sitecoreCrawlJobData, IMapper mapper)
         {
             _jobData = sitecoreCrawlJobData ?? throw new ArgumentNullException(nameof(sitecoreCrawlJobData));
             _log = log ?? throw new ArgumentNullException(nameof(log));
@@ -52,7 +53,7 @@ namespace CluedIn.Crawling.Sitecore.Infrastructure
             }
             catch (XdbModelConflictException ce)
             {
-                _log.Error(() => ce.Message, ce);
+                _log.LogError(ce.Message, ce);
                 return null;
             }
         }
